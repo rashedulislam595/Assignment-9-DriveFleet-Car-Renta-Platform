@@ -12,7 +12,7 @@ const Navbar = () => {
     return (
         <div className='bg-white shadow-sm sticky top-0 z-10'>
             <div className='flex justify-between items-center w-11/12 mx-auto p-2'>
-               <div className='flex items-center gap-2'>
+                <div className='flex items-center gap-2'>
                     <Image src={logo} alt='logo' width={50} height={50} />
                     <h2 className='text-3xl font-bold'>DriveFleet</h2>
                 </div>
@@ -26,7 +26,9 @@ const Navbar = () => {
 
                 <ul className='flex gap-3 items-center'>
                     <li>
-                        <Button variant='primary' className="rounded-md">Login</Button>
+                        <Link href={'/login'}>
+                            <Button variant='primary' className="rounded-md">Login</Button>
+                        </Link>
                     </li>
                 </ul>
             </div>
