@@ -8,7 +8,7 @@ const ChooseDriveFleet = () => {
             <div className='w-11/12 mx-auto py-20'>
                 <div className="text-center mb-10">
                     <h3 className="text-3xl md:text-4xl font-bold mb-2">Why Choose DriveFleet?</h3>
-                    <p className="text-[#11111180] ">We redefine the rental experience with a focus on engineering excellence and <br /> client satisfaction.</p>
+                    <p className="text-[#11111180] ">We redefine the rental experience with a focus on engineering excellence and <br className='hidden md:inline' /> client satisfaction.</p>
                 </div>
                 <div className='grid sm:grid-cols-2 md:grid-cols-3 gap-8'>
                     {/* card 1 */}

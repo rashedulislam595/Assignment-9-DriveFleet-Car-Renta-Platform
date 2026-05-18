@@ -1,5 +1,6 @@
 import Banner from "@/components/Banner";
 import ChooseDriveFleet from "@/components/ChooseDriveFleet";
+import PopularDestinations from "@/components/PopularDestinations";
 import Image from "next/image";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
     <div>
       <Banner/>
       <ChooseDriveFleet/>
+      <PopularDestinations/>
     </div>
   );
 }
