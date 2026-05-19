@@ -5,23 +5,23 @@ import React from 'react';
 import { IoLocationOutline } from 'react-icons/io5';
 import { MdAirlineSeatReclineExtra, MdOutlineSettingsInputComponent } from 'react-icons/md';
 
-const AllCarsCard = ({car}) => {
-    const {carName,DailyRentPrice,carType,seatCapacity,imageUrl,AvailabilityStatus,PickupLocation,description} = car;
+const AvailableCarsCard = ({ car }) => {
+    const { carName, DailyRentPrice, carType, seatCapacity, imageUrl, AvailabilityStatus, PickupLocation,description} = car;
 
     return (
-        <Card className="w-full items-stretch shadow-md group overflow-hidden rounded-xl  p-0 hover:shadow-xl">
-            <div className="relative w-full shrink-0 overflow-hidden rounded-t-xl ">
+        <Card className="w-full items-stretch shadow-md group overflow-hidden rounded-xl  p-0 hover:shadow-xl border border-gray-300">
+            <div className="w-full shrink-0 overflow-hidden rounded-t-xl relative">
                 <Image src={imageUrl} alt={carName} width={200} height={200} className='w-full h-52 rounded-t-xl group-hover:scale-110 duration-700' />
-                <div className='absolute top-3 right-3'>
-                    <button className='text-[#46875f] bg-[#d9f7e3] py-0.5 text-sm px-4 rounded-full font-bold'>{AvailabilityStatus}</button>
-                </div>
                 <div className='absolute top-3 left-3'>
                     <button className='text- bg-gray-300 py-0.5 text-sm px-4 rounded-full font-bold'>{carType}</button>
                 </div>
             </div>
             <div className="flex flex-1 flex-col gap-3 p-4">
                 <Card.Header className="gap-1">
-                    <Card.Title className=" text-2xl mb-2">{carName}</Card.Title>
+                    <div className='flex justify-between items-center'>
+                        <Card.Title className=" text-2xl mb-2">{carName}</Card.Title>
+                        <button className='text-[#46875f] bg-[#d9f7e3] py-0.5 text-sm px-4 rounded-md font-bold'>{AvailabilityStatus}</button>
+                    </div>
                     <Card.Description className='line-clamp-2' >
                         {description}
                     </Card.Description>
@@ -41,7 +41,7 @@ const AllCarsCard = ({car}) => {
                             <MdOutlineSettingsInputComponent className='mx-auto text-xl' />
                             <p>Automatic</p>
                         </div>
-                        
+
                     </div>
                 </Card.Header>
                 <Card.Footer className="mt-auto flex w-full gap-3 items-center justify-between">
@@ -49,7 +49,7 @@ const AllCarsCard = ({car}) => {
                         <p className='text-3xl font-bold '>${DailyRentPrice}<span className='text-lg font-normal text-[#11111170]'>/day</span></p>
                     </div>
                     <Link href={'/explore-cars'}>
-                        <Button className="rounded-md text-blue-600 border border-blue-500 hover:bg-blue-600 hover:text-white" variant='outline'>View Details</Button>
+                        <Button className='text-blue-600 bg-white font-bold'  >View Details</Button>
                     </Link>
                 </Card.Footer>
             </div>
@@ -57,4 +57,4 @@ const AllCarsCard = ({car}) => {
     );
 };
 
-export default AllCarsCard;
+export default AvailableCarsCard;
