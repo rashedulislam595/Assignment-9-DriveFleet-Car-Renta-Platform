@@ -1,15 +1,31 @@
 'use client'
 import { Button, Card, FieldError, Input, Label, ListBox, TextArea, TextField, Select, RadioGroup, Radio } from '@heroui/react';
+import { redirect } from 'next/navigation';
 import React from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
+import { toast } from 'react-toastify';
 
 const AddCarPage = () => {
 
-    const onSubmit = (e)=>{
+    const onSubmit = async(e)=>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const carData = Object.fromEntries(formData.entries())
-        console.log(carData)
+        // console.log(carData)
+
+        const res = await fetch('http://localhost:5000/cars',{
+            method:"POST",
+            headers:{
+                'content-type':'application/json'
+            },
+            body: JSON.stringify(carData)
+        })
+        const data = await res.json()
+        // console.log(data)
+        if(data?.insertedId){
+            toast.success('Car Data Added Successful!',{position:'top-center',theme:'dark'})
+            redirect('/')
+        }
     }
 
     return (
