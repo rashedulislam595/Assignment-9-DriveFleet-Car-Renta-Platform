@@ -154,7 +154,7 @@ const AddCarPage = () => {
                             </div>
 
                             {/* Pickup Location */}
-                            <TextField name="Pickup-location" isRequired>
+                            <TextField name="PickupLocation" isRequired>
                                 <Label>Pickup Location</Label>
                                 <Input placeholder="e.g. Gulshan-2, Dhaka" className="rounded-md bg-gray-200" />
                                 <FieldError />
@@ -163,7 +163,7 @@ const AddCarPage = () => {
                             {/* Availability Status*/}
                             <div className="flex flex-col gap-4">
                                 <Label>Availability Status</Label>
-                                <RadioGroup defaultValue="Available" name="Availability-Status" orientation="horizontal" >
+                                <RadioGroup defaultValue="Available" name="AvailabilityStatus" orientation="horizontal" >
                                     <Radio value="Available">
                                         <Radio.Control className='border border-gray-400'>
                                             <Radio.Indicator />
