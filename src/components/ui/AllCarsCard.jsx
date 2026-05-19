@@ -6,7 +6,7 @@ import { IoLocationOutline } from 'react-icons/io5';
 import { MdAirlineSeatReclineExtra, MdOutlineSettingsInputComponent } from 'react-icons/md';
 
 const AllCarsCard = ({car}) => {
-    const {carName,DailyRentPrice,carType,seatCapacity,imageUrl,AvailabilityStatus,PickupLocation,description} = car;
+    const {_id,carName,DailyRentPrice,carType,seatCapacity,imageUrl,AvailabilityStatus,PickupLocation,description} = car;
 
     return (
         <Card className="w-full items-stretch shadow-md group overflow-hidden rounded-xl  p-0 hover:shadow-xl">
@@ -48,7 +48,7 @@ const AllCarsCard = ({car}) => {
                     <div className="flex flex-col">
                         <p className='text-3xl font-bold '>${DailyRentPrice}<span className='text-lg font-normal text-[#11111170]'>/day</span></p>
                     </div>
-                    <Link href={'/explore-cars'}>
+                    <Link href={`/explore-cars/${_id}`}>
                         <Button className="rounded-md text-blue-600 border border-blue-500 hover:bg-blue-600 hover:text-white" variant='outline'>View Details</Button>
                     </Link>
                 </Card.Footer>

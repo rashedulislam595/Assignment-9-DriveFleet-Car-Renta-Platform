@@ -30,7 +30,7 @@ const AddCarPage = () => {
 
     return (
         <div className='bg-gray-200'>
-            <div className='w-11/12 mx-auto my-14'>
+            <div className='w-11/12 mx-auto py-14'>
                 <div className='text-center'>
                     <p className='text-sm font-bold mb-2 text-green-600'>List Your Vehicle</p>
                     <h2 className='text-4xl font-bold mb-2'>Add a Car</h2>
@@ -205,10 +205,10 @@ const AddCarPage = () => {
                             type="submit"
                             variant="primary"
                             //   isLoading={isPending}
-                            className=" rounded-md"
+                            className=" rounded-md group"
                         >
                             {/* {isPending ? "Adding Package..." : "Add Travel Package"} */}
-                            Submit Listing <FaArrowRightLong />
+                            Submit Listing <FaArrowRightLong className='group-hover:translate-x-2 duration-700' />
                         </Button>
                         </div>
                     </form>

@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { Check, Eye, EyeSlash } from "@gravity-ui/icons";
+import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { Button, FieldError, Form, Input, Label, TextField, InputGroup, Separator } from "@heroui/react";
 import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
@@ -18,7 +18,7 @@ const RegisterPage = () => {
 
     return (
         <div className='bg-gray-200'>
-            <div className='w-10/12 md:w-9/12  mx-auto my-20 md:grid md:grid-cols-2 '>
+            <div className='w-10/12 md:w-9/12  mx-auto py-20 md:grid md:grid-cols-2 '>
                 {/* left side image and heading */}
                 <div className='hidden md:block group overflow-hidden relative rounded-l-xl shadow-md'>
                     <Image src={'https://lh3.googleusercontent.com/aida-public/AB6AXuBC_pBy-uL2hvVR5vaWNzNVT5jH3LxGvIGTMuTxmTD8AE-lJlLgqd509LDUWIE4ZI4wxl3OFwgry1b-7d14djPH7FAzh09-Tli7nUaY3E-ZmgXZ1WyOMYLQAAusz7Q7OjzdwZPmFLh7ZPVynS9HykjPUXf1y0hGYVu8K1_SuQ-aGyKsRKmMexiA-WpLxa7yCuj3vajzYchj2-kSZMr9ihXvbLYzcFw-WyummhzJ8ahn-2xA8DBTDg04VzwV45SGG_yXXpP-qXioNjw'} alt='car-image' width={400} height={400} className='w-full h-full  group-hover:scale-110 duration-700' />
