@@ -1,13 +1,41 @@
+
+// post add car 
+export const postAddCar = async (carData) => {
+    const res = await fetch('http://localhost:5000/cars', {
+        method: "POST",
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(carData)
+    })
+    const data = await res.json()
+    return data
+}
+
 // all cars data
-export const getAllCars =async()=>{
+export const getAllCars = async () => {
     const res = await fetch('http://localhost:5000/cars')
     const data = await res.json()
     return data
 }
 
 // getCarById
-export const getCarById = async(id)=>{
+export const getCarById = async (id) => {
     const res = await fetch(`http://localhost:5000/cars/${id}`);
     const data = await res.json();
+    return data
+}
+
+// booking 
+
+export const postCarBooking = async (bookingData) => {
+    const res = await fetch('http://localhost:5000/carBookings', {
+        method: "POST",
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(bookingData)
+    });
+    const data = await res.json()
     return data
 }

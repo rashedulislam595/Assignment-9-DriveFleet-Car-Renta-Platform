@@ -1,4 +1,5 @@
 'use client'
+import { postAddCar } from '@/lib/data';
 import { Button, Card, FieldError, Input, Label, ListBox, TextArea, TextField, Select, RadioGroup, Radio } from '@heroui/react';
 import { redirect } from 'next/navigation';
 import React from 'react';
@@ -13,14 +14,7 @@ const AddCarPage = () => {
         const carData = Object.fromEntries(formData.entries())
         // console.log(carData)
 
-        const res = await fetch('http://localhost:5000/cars',{
-            method:"POST",
-            headers:{
-                'content-type':'application/json'
-            },
-            body: JSON.stringify(carData)
-        })
-        const data = await res.json()
+        const data = await postAddCar(carData)
         // console.log(data)
         if(data?.insertedId){
             toast.success('Car Data Added Successful!',{position:'top-center',theme:'dark'})

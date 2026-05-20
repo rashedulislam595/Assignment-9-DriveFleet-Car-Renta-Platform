@@ -1,13 +1,48 @@
+import { authClient } from '@/lib/auth-client';
+import { postCarBooking } from '@/lib/data';
 import { Button, Label, Modal, Surface, Select, ListBox, TextField, TextArea, FieldError, RadioGroup, Radio, Input } from '@heroui/react';
+import { redirect } from 'next/navigation';
 import React from 'react';
+import { toast } from 'react-toastify';
 
-const BookNowModal = ({carName}) => {
+const BookNowModal = ({ car, pickupDate, returnDate, total }) => {
+
+    const { data: session } = authClient.useSession()
+    const user = session?.user;
+
+    const {_id, carName, imageUrl, PickupLocation, seatCapacity} = car;
 
     const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const carData = Object.fromEntries(formData.entries())
-        console.log(carData)
+        // console.log(carData)
+        const {driverNeeded, specialNote} = carData
+
+        const bookingUserData = {
+            userId : user?.id,
+            userName : user?.name,
+            userEmail: user?.email,
+            userImage: user?.image,
+            carId:_id,
+            carName,
+            carImage : imageUrl,
+            PickupLocation,
+            seatCapacity,
+            driverNeeded,
+            specialNote,
+            totalCost:total,
+            pickupDate: new Date(pickupDate),
+            returnDate: new Date(returnDate),
+            
+    }
+    
+    const data = await postCarBooking(bookingUserData)
+    
+    if (data?.insertedId) {
+        toast.success('Car Data Added Successful!', { position: 'top-center', theme: 'dark' })
+        redirect('/')
+    }
 
     }
 
@@ -65,7 +100,7 @@ const BookNowModal = ({carName}) => {
 
                                     {/* Special Note */}
                                     <div className=" w-full mb-5">
-                                        <TextField name="description" isRequired>
+                                        <TextField name="specialNote" isRequired>
                                             <Label>Special Note</Label>
                                             <TextArea
                                                 placeholder="Write your special note..."

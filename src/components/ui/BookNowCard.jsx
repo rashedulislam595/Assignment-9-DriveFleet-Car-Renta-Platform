@@ -113,7 +113,7 @@ const BookNowCard = ({ car }) => {
                     </div>
                 </div>
                 {/* bookNow modal */}
-                <BookNowModal carName={carName} />
+                <BookNowModal car={car} pickupDate={pickupDate} returnDate={returnDate} total={total} />
 
                 <p className="text-xs text-center text-gray-500 mt-4 leading-5">
                     You won’t be charged yet. Free cancellation up to
