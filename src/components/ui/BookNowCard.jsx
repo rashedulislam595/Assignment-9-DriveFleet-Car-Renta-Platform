@@ -1,34 +1,35 @@
 import { Button, Card, DateField, Label, Separator } from '@heroui/react';
 import { MapPin } from 'lucide-react';
 import React, { useState } from 'react';
+import BookNowModal from '../modal/BookNowModal';
 
-const BookNowCard = ({car}) => {
+const BookNowCard = ({ car }) => {
     const [pickupDate, setPickupDate] = useState(null)
     const [returnDate, setReturnDate] = useState(null)
 
-    const {PickupLocation,DailyRentPrice} = car;
+    const { PickupLocation, DailyRentPrice, carName } = car;
 
-    const calculateDay = ()=>{
-        // if(!pickupDate || !returnDate) return 0;
+    const calculateDay = () => {
 
         const pickup = new Date(
             pickupDate?.year,
-            pickupDate?.month-1,
+            pickupDate?.month - 1,
             pickupDate?.day
         )
         const dropOff = new Date(
             returnDate?.year,
-            returnDate?.month-1,
+            returnDate?.month - 1,
             returnDate?.day
         )
 
-        const diffTime = dropOff -pickup
+        const diffTime = dropOff - pickup
         const day = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         return day
     }
     const yourDay = calculateDay()
 
-    const yourDayTotalPrice = yourDay?DailyRentPrice*yourDay:DailyRentPrice;
+    // calculate amount 
+    const yourDayTotalPrice = yourDay ? DailyRentPrice * yourDay : DailyRentPrice;
     const serviceFee = 45;
     const total = parseInt(yourDayTotalPrice) + parseInt(serviceFee);
 
@@ -39,7 +40,7 @@ const BookNowCard = ({car}) => {
                 <div className="flex items-start justify-between gap-4">
                     <div>
                         <h2 className="text-2xl font-bold">
-                            Tesla Model S Plaid
+                            {carName}
                         </h2>
 
                         <div className="flex items-center gap-1 text-gray-500 text-sm mt-1">
@@ -81,7 +82,7 @@ const BookNowCard = ({car}) => {
                 <div className="space-y-3 mt-6 text-sm">
                     <div className="flex justify-between">
                         <span className="text-gray-500">
-                            ${DailyRentPrice} × {yourDay?yourDay:1} days
+                            ${DailyRentPrice} × {yourDay ? yourDay : 1} days
                         </span>
 
                         <span className="font-medium">
@@ -111,13 +112,8 @@ const BookNowCard = ({car}) => {
                         </span>
                     </div>
                 </div>
-
-                <Button
-                    variant='primary'
-                    className="w-full mt-6 font-semibold"
-                >
-                    Book Now
-                </Button>
+                {/* bookNow modal */}
+                <BookNowModal carName={carName} />
 
                 <p className="text-xs text-center text-gray-500 mt-4 leading-5">
                     You won’t be charged yet. Free cancellation up to

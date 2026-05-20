@@ -5,15 +5,35 @@ import { Button, FieldError, Form, Input, Label, TextField, InputGroup, Separato
 import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
 import Image from 'next/image';
+import { authClient } from '@/lib/auth-client';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 const RegisterPage = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const router = useRouter()
 
     const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const userData = Object.fromEntries(formData);
-        console.log(userData);
+        // console.log(userData);
+        const {fullName,password,email,imageUrl} = userData;
+
+        const { data, error } = await authClient.signUp.email({
+            name: fullName,
+            email: email, 
+            password: password,
+            image: imageUrl,
+            callbackURL: "/login",
+        });
+
+        if (data) {
+            toast.success("Welcome! Your account has been created successfully.", { theme: "dark", position: "top-center" })
+            router.push('/login')
+        } else {
+            toast.error(error.message, { theme: "dark", position: "top-center" })
+        }
     }
 
     return (
@@ -42,7 +62,7 @@ const RegisterPage = () => {
                                 <FieldError />
                             </TextField>
                             {/* image url */}
-                            <TextField isRequired name="website" type="url">
+                            <TextField isRequired name="imageUrl" type="url">
                                 <Label>Photo URL</Label>
                                 <Input placeholder="https://example.com" className='rounded-md bg-gray-200 ' />
                             </TextField>

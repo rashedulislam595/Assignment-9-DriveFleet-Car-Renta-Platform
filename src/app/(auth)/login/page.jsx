@@ -5,6 +5,8 @@ import { Button, FieldError, Form, Input, Label, TextField, InputGroup, Separato
 import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
 import Image from 'next/image';
+import { toast } from 'react-toastify';
+import { authClient } from '@/lib/auth-client';
 
 const LoginPage = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -13,7 +15,21 @@ const LoginPage = () => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const userData = Object.fromEntries(formData);
-        console.log(userData);
+        // console.log(userData);
+        const { email, password } = userData;
+
+        const { data, error } = await authClient.signIn.email({
+            email,
+            password,
+            rememberMe: true,
+            callbackURL: "/",
+        });
+
+        if (data) {
+            toast.success("Welcome back! You're now logged in.", { theme: "dark", position: "top-center" })
+        } else {
+            toast.error(error.message, { theme: "dark", position: "top-center" })
+        }
     }
 
     return (
