@@ -27,7 +27,7 @@ export const getCarById = async (id) => {
 }
 
 // booking 
-
+// post booking data from server
 export const postCarBooking = async (bookingData) => {
     const res = await fetch('http://localhost:5000/carBookings', {
         method: "POST",
@@ -37,5 +37,12 @@ export const postCarBooking = async (bookingData) => {
         body: JSON.stringify(bookingData)
     });
     const data = await res.json()
+    return data
+}
+
+// ger specific booking data
+export const getUserBookings =async(userId)=>{
+    const res = await fetch(`http://localhost:5000/carBookings/${userId}`);
+    const data = await res.json();
     return data
 }
