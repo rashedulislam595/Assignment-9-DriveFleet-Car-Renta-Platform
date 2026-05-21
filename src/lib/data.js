@@ -26,6 +26,26 @@ export const getCarById = async (id) => {
     return data
 }
 
+// get specific user add cars data 
+export const getUserCarData = async (userId) => {
+    const res = await fetch(`http://localhost:5000/cars/user/${userId}`);
+    const data = await res.json();
+    return data
+}
+
+// update car data 
+export const updateCarData = async (id, updateData) => {
+    const res = await fetch(`http://localhost:5000/cars/${id}`, {
+        method: "PATCH",
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(updateData)
+    })
+    const data = await res.json();
+    return data
+}
+
 // booking 
 // post booking data from server
 export const postCarBooking = async (bookingData) => {
@@ -41,7 +61,7 @@ export const postCarBooking = async (bookingData) => {
 }
 
 // ger specific booking data
-export const getUserBookings =async(userId)=>{
+export const getUserBookings = async (userId) => {
     const res = await fetch(`http://localhost:5000/carBookings/${userId}`);
     const data = await res.json();
     return data

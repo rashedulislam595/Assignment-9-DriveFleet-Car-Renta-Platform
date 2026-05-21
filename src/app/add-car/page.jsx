@@ -1,4 +1,5 @@
 'use client'
+import { authClient } from '@/lib/auth-client';
 import { postAddCar } from '@/lib/data';
 import { Button, Card, FieldError, Input, Label, ListBox, TextArea, TextField, Select, RadioGroup, Radio } from '@heroui/react';
 import { redirect } from 'next/navigation';
@@ -8,16 +9,21 @@ import { toast } from 'react-toastify';
 
 const AddCarPage = () => {
 
-    const onSubmit = async(e)=>{
+    const { data: session } = authClient.useSession()
+    const user = session?.user;
+
+    const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const carData = Object.fromEntries(formData.entries())
+
+        const userAddCarData = {...carData,userId :user?.id,userName:user?.name,userEmail: user?.email}
         // console.log(carData)
 
-        const data = await postAddCar(carData)
+        const data = await postAddCar(userAddCarData)
         // console.log(data)
-        if(data?.insertedId){
-            toast.success('Car Data Added Successful!',{position:'top-center',theme:'dark'})
+        if (data?.insertedId) {
+            toast.success('Car Data Added Successful!', { position: 'top-center', theme: 'dark' })
             redirect('/')
         }
     }
@@ -196,14 +202,14 @@ const AddCarPage = () => {
                             <p className='text-[#11111180]'>All fields are required. Listing is live after submission.</p>
 
                             <Button
-                            type="submit"
-                            variant="primary"
-                            //   isLoading={isPending}
-                            className=" rounded-md group"
-                        >
-                            {/* {isPending ? "Adding Package..." : "Add Travel Package"} */}
-                            Submit Listing <FaArrowRightLong className='group-hover:translate-x-2 duration-700' />
-                        </Button>
+                                type="submit"
+                                variant="primary"
+                                //   isLoading={isPending}
+                                className=" rounded-md group"
+                            >
+                                {/* {isPending ? "Adding Package..." : "Add Travel Package"} */}
+                                Submit Listing <FaArrowRightLong className='group-hover:translate-x-2 duration-700' />
+                            </Button>
                         </div>
                     </form>
                 </div>

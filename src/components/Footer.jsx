@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { AiFillInstagram } from 'react-icons/ai';
 import { RiFacebookBoxFill, RiTwitterXFill } from 'react-icons/ri';
-import logo from '../../public/assets/footerLogo.png'
+import logo from '../../public/assets/logo.png'
 
 const Footer = () => {
     return (

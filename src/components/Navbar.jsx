@@ -61,7 +61,7 @@ const Navbar = () => {
 
                                                     <Dropdown.Item id="edit-file" textValue="Edit file">
 
-                                                        <Link href={'/my-added-cars'} className='w-full' ><Label>My Added Cars</Label></Link>
+                                                        <Link href={'/my-added-car'} className='w-full' ><Label>My Added Cars</Label></Link>
                                                     </Dropdown.Item>
 
                                                     <Dropdown.Item >
