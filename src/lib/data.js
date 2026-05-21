@@ -46,6 +46,15 @@ export const updateCarData = async (id, updateData) => {
     return data
 }
 
+// Delete car data
+export const deleteCarInfo = async(id)=>{
+    const res = await fetch(`http://localhost:5000/cars/${id}`, {
+        method: "DELETE"
+    })
+    const data = await res.json()
+    return data
+}
+
 // booking 
 // post booking data from server
 export const postCarBooking = async (bookingData) => {
@@ -64,5 +73,14 @@ export const postCarBooking = async (bookingData) => {
 export const getUserBookings = async (userId) => {
     const res = await fetch(`http://localhost:5000/carBookings/${userId}`);
     const data = await res.json();
+    return data
+}
+
+// delete booking
+export const deleteBooking = async (id) => {
+    const res = await fetch(`http://localhost:5000/carBookings/${id}`, {
+        method: "DELETE"
+    })
+    const data = await res.json()
     return data
 }

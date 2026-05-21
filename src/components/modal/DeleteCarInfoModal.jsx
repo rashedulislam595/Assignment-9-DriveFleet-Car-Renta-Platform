@@ -1,7 +1,20 @@
+'use client'
+import { deleteCarInfo } from '@/lib/data';
 import { AlertDialog, Button } from '@heroui/react';
 import React from 'react';
+import { toast } from 'react-toastify';
 
-const DeleteModal = ({carName}) => {
+const DeleteCarInfoModal = ({ car }) => {
+    const { _id, carName } = car;
+
+    const handleDelete = async () => {
+        const data = await deleteCarInfo(_id);
+        if (data.deletedCount) {
+            toast.success("booking cancel successful!", { position: 'top-center', theme: 'dark' })
+        }
+        window.location.reload()
+    }
+
     return (
         <AlertDialog>
             <Button variant="danger">Delete</Button>
@@ -23,7 +36,7 @@ const DeleteModal = ({carName}) => {
                             <Button slot="close" variant="tertiary">
                                 Cancel
                             </Button>
-                            <Button slot="close" variant="danger">
+                            <Button onClick={handleDelete} slot="close" variant="danger">
                                 Delete
                             </Button>
                         </AlertDialog.Footer>
@@ -34,4 +47,4 @@ const DeleteModal = ({carName}) => {
     );
 };
 
-export default DeleteModal;
+export default DeleteCarInfoModal;

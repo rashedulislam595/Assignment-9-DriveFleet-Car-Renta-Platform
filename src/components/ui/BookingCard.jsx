@@ -2,7 +2,8 @@ import { Button, Card, Chip } from '@heroui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import DeleteModal from '../modal/DeleteModal';
+import DeleteBooking from '../modal/DeleteBooking';
+
 
 const BookingCard = ({ car }) => {
     const {carId, carImage, seatCapacity, totalCost, carName, driverNeeded, PickupLocation, yourDay, bookingDate} = car;
@@ -88,7 +89,7 @@ const BookingCard = ({ car }) => {
                                     <Button className="rounded-md text-blue-600 border border-blue-500 hover:bg-blue-600 hover:text-white" variant='outline'>View Details</Button>
                                 </Link>
 
-                                <DeleteModal carName={carName} />
+                                <DeleteBooking car={car} />
                             </div>
                         </div>
                     </div>

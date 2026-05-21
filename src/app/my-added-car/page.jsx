@@ -1,3 +1,4 @@
+import MyAddedCarEmpty from '@/components/ui/MyAddedCarEmpty';
 import MyAddedCarsCard from '@/components/ui/MyAddedCarsCard';
 import { auth } from '@/lib/auth';
 import { getUserCarData } from '@/lib/data';
@@ -22,6 +23,7 @@ const MyAddedCar = async () => {
 
             <div className='my-5'>
                 {
+                    userCars.length === 0 ? <MyAddedCarEmpty/>:
                     userCars.map(car => <MyAddedCarsCard key={car._id} car={car} />)
                 }
             </div>

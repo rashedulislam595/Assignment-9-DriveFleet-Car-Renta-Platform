@@ -4,6 +4,7 @@ import React from 'react';
 import { AiFillEdit } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
 import CarUpdateModal from '../modal/CarUpdateModal';
+import DeleteCarInfoModal from '../modal/DeleteCarInfoModal';
 
 const MyAddedCarsCard = ({ car }) => {
     const { carName, imageUrl, carType, PickupLocation, DailyRentPrice, AvailabilityStatus } = car;
@@ -41,15 +42,7 @@ const MyAddedCarsCard = ({ car }) => {
                 <div className="flex items-center gap-3">
                     <CarUpdateModal car={car} />
 
-                    <Button
-                        size="sm"
-                        radius="full"
-                        variant="flat"
-                        color="danger"
-                        className="font-medium"
-                    >
-                        Delete
-                    </Button>
+                    <DeleteCarInfoModal car={car} />
                 </div>
             </div>
         </Card>
