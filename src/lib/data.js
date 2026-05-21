@@ -1,7 +1,7 @@
 
 // post add car 
 export const postAddCar = async (carData) => {
-    const res = await fetch('http://localhost:5000/cars', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`, {
         method: "POST",
         headers: {
             'content-type': 'application/json'
@@ -13,29 +13,52 @@ export const postAddCar = async (carData) => {
 }
 
 // all cars data
-export const getAllCars = async () => {
-    const res = await fetch('http://localhost:5000/cars')
+export const getAllCars = async (token) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
+    const data = await res.json()
+    return data
+}
+
+// available 6 cars
+export const getAvailableCars = async (token) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/availableCars`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
     const data = await res.json()
     return data
 }
 
 // getCarById
-export const getCarById = async (id) => {
-    const res = await fetch(`http://localhost:5000/cars/${id}`);
+export const getCarById = async (id, token) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars/${id}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    });
     const data = await res.json();
     return data
 }
 
 // get specific user add cars data 
-export const getUserCarData = async (userId) => {
-    const res = await fetch(`http://localhost:5000/cars/user/${userId}`);
+export const getUserCarData = async (userId,token) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars/user/${userId}`,{
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    });
     const data = await res.json();
     return data
 }
 
 // update car data 
 export const updateCarData = async (id, updateData) => {
-    const res = await fetch(`http://localhost:5000/cars/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars/${id}`, {
         method: "PATCH",
         headers: {
             'content-type': 'application/json'
@@ -47,8 +70,8 @@ export const updateCarData = async (id, updateData) => {
 }
 
 // Delete car data
-export const deleteCarInfo = async(id)=>{
-    const res = await fetch(`http://localhost:5000/cars/${id}`, {
+export const deleteCarInfo = async (id) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars/${id}`, {
         method: "DELETE"
     })
     const data = await res.json()
@@ -58,7 +81,7 @@ export const deleteCarInfo = async(id)=>{
 // booking 
 // post booking data from server
 export const postCarBooking = async (bookingData) => {
-    const res = await fetch('http://localhost:5000/carBookings', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/carBookings`, {
         method: "POST",
         headers: {
             'content-type': 'application/json'
@@ -70,15 +93,19 @@ export const postCarBooking = async (bookingData) => {
 }
 
 // ger specific booking data
-export const getUserBookings = async (userId) => {
-    const res = await fetch(`http://localhost:5000/carBookings/${userId}`);
+export const getUserBookings = async (userId,token) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/carBookings/${userId}`,{
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    });
     const data = await res.json();
     return data
 }
 
 // delete booking
 export const deleteBooking = async (id) => {
-    const res = await fetch(`http://localhost:5000/carBookings/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/carBookings/${id}`, {
         method: "DELETE"
     })
     const data = await res.json()

@@ -13,7 +13,11 @@ const MyAddedCar = async () => {
     })
     const user = session?.user;
 
-    const userCars = await getUserCarData(user?.id)
+    const {token} = await auth.api.getToken({
+        headers: await headers()
+    })
+
+    const userCars = await getUserCarData(user?.id,token)
     console.log(userCars)
 
     return (

@@ -9,8 +9,11 @@ const MyBookingsPage =async () => {
      const session = await auth.api.getSession({
         headers: await headers() 
     })
+    const {token} = await auth.api.getToken({
+        headers: await headers()
+    })
     const user = session?.user;
-    const bookingsCars = await getUserBookings(user?.id)
+    const bookingsCars = await getUserBookings(user?.id,token)
 
     return (
         <div className='w-11/12 mx-auto py-10'>

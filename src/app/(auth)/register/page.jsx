@@ -18,11 +18,11 @@ const RegisterPage = () => {
         const formData = new FormData(e.currentTarget);
         const userData = Object.fromEntries(formData);
         // console.log(userData);
-        const {fullName,password,email,imageUrl} = userData;
+        const { fullName, password, email, imageUrl } = userData;
 
         const { data, error } = await authClient.signUp.email({
             name: fullName,
-            email: email, 
+            email: email,
             password: password,
             image: imageUrl,
             callbackURL: "/login",
@@ -35,6 +35,16 @@ const RegisterPage = () => {
             toast.error(error.message, { theme: "dark", position: "top-center" })
         }
     }
+
+    // signin with google
+    const signIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+        if (data) {
+            toast.success("Welcome back! You're now logged in.", { theme: "dark", position: "top-center" })
+        }
+    };
 
     return (
         <div className='bg-gray-200'>
@@ -134,7 +144,7 @@ const RegisterPage = () => {
                         <p className='font-bold text-sm text-[#11111170]'>OR</p>
                         <Separator className='border ' />
                     </div>
-                    <Button variant='outline' className='rounded-md w-full'>
+                    <Button onClick={signIn} variant='outline' className='rounded-md w-full'>
                         <FcGoogle />
                         Continue with Google
                     </Button>

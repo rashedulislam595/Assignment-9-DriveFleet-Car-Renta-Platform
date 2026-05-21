@@ -1,14 +1,19 @@
-import { getAllCars } from '@/lib/data';
+import { getAvailableCars } from '@/lib/data';
 import Link from 'next/link';
 import React from 'react';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import AvailableCarsCard from '@/components/ui/AvailableCarsCard';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 
 
 
 const AvailableCars = async () => {
-    const allCars = await getAllCars();
-    const cars = allCars.slice(0, 6);
+    const {token} = await auth.api.getToken({
+        headers: await headers()
+    })
+    // const allCars = await getAllCars();
+    const cars = await getAvailableCars(token)
     return (
         <div className='w-11/12 mx-auto my-20'>
             <div className=''>

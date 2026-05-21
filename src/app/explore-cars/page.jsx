@@ -1,10 +1,15 @@
 import AllCarsCard from '@/components/ui/AllCarsCard';
+import { auth } from '@/lib/auth';
 import { getAllCars } from '@/lib/data';
+import { headers } from 'next/headers';
 import React from 'react';
 
 const ExploreAllCarsPage = async () => {
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    })
 
-    const allCars = await getAllCars()
+    const allCars = await getAllCars(token)
 
     return (
         <div className='bg-gray-200'>
@@ -15,7 +20,7 @@ const ExploreAllCarsPage = async () => {
                 </div>
                 <div className='grid sm:grid-cols-2 md:grid-cols-3 gap-6 my-10'>
                     {
-                        allCars.map(car =><AllCarsCard key={car._id} car={car} />)
+                        allCars.map(car => <AllCarsCard key={car._id} car={car} />)
                     }
                 </div>
             </div>

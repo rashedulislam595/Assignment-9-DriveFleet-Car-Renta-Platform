@@ -32,6 +32,16 @@ const LoginPage = () => {
         }
     }
 
+    // signin with google
+    const signIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+        if (data) {
+            toast.success("Welcome back! You're now logged in.", { theme: "dark", position: "top-center" })
+        }
+    };
+
     return (
         <div className='bg-gray-200'>
             <div className='w-10/12 md:w-8/12  mx-auto py-20 md:grid md:grid-cols-2 '>
@@ -116,7 +126,7 @@ const LoginPage = () => {
                         <p className='font-bold text-sm text-[#11111170]'>OR</p>
                         <Separator className='border ' />
                     </div>
-                    <Button variant='outline' className='rounded-md w-full'>
+                    <Button onClick={signIn} variant='outline' className='rounded-md w-full'>
                         <FcGoogle />
                         Continue with Google
                     </Button>
