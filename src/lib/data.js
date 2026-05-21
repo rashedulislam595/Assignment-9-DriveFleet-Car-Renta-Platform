@@ -13,23 +13,15 @@ export const postAddCar = async (carData) => {
 }
 
 // all cars data
-export const getAllCars = async (token) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`, {
-        headers: {
-            authorization: `Bearer ${token}`
-        }
-    })
+export const getAllCars = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`)
     const data = await res.json()
     return data
 }
 
 // available 6 cars
-export const getAvailableCars = async (token) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/availableCars`, {
-        headers: {
-            authorization: `Bearer ${token}`
-        }
-    })
+export const getAvailableCars = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/availableCars`)
     const data = await res.json()
     return data
 }

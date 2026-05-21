@@ -1,15 +1,9 @@
 import AllCarsCard from '@/components/ui/AllCarsCard';
-import { auth } from '@/lib/auth';
 import { getAllCars } from '@/lib/data';
-import { headers } from 'next/headers';
 import React from 'react';
 
 const ExploreAllCarsPage = async () => {
-    const { token } = await auth.api.getToken({
-        headers: await headers()
-    })
-
-    const allCars = await getAllCars(token)
+    const allCars = await getAllCars()
 
     return (
         <div className='bg-gray-200'>
