@@ -13,8 +13,8 @@ export const postAddCar = async (carData) => {
 }
 
 // all cars data
-export const getAllCars = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`)
+export const getAllCars = async (search,type) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars?search=${search}&type=${type}`)
     const data = await res.json()
     return data
 }

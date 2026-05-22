@@ -18,8 +18,9 @@ const BookingCard = ({ car }) => {
                             <Image
                                 src={carImage}
                                 alt={carName}
-                                fill
-                                className="object-cover rounded-xl"
+                                width={200}
+                                height={200}
+                                className="object-cover rounded-xl w-full h-full"
                             />
                         </div>
 
