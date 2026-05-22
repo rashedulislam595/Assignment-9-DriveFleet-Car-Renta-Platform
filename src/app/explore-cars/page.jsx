@@ -48,12 +48,12 @@ const ExploreAllCarsPage = () => {
                             className="w-full px-4 md:px-5 py-3 rounded-xl border border-gray-300 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-200"
                         >
                             <option value="">All Types</option>
-                            <option value="SUV">Suv</option>
+                            <option value="Suv">Suv</option>
                             <option value="Sedan">Sedan</option>
                             <option value="Luxury">Luxury</option>
-                            <option value="Sports">Hatchback</option>
-                            <option value="Hatchback">Electric</option>
-                            <option value="Hatchback">Convertible</option>
+                            <option value="Hatchback">Hatchback</option>
+                            <option value="Electric">Electric</option>
+                            <option value="Convertible">Convertible</option>
                         </select>
                     </div>
                 </div>
