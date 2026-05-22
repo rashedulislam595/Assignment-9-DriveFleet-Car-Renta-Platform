@@ -2,12 +2,13 @@ import { Button, Card, DateField, Label, Separator } from '@heroui/react';
 import { MapPin } from 'lucide-react';
 import React, { useState } from 'react';
 import BookNowModal from '../modal/BookNowModal';
+import { FaBookmark } from 'react-icons/fa6';
 
 const BookNowCard = ({ car }) => {
     const [pickupDate, setPickupDate] = useState(null)
     const [returnDate, setReturnDate] = useState(null)
 
-    const { PickupLocation, DailyRentPrice, carName } = car;
+    const { PickupLocation, DailyRentPrice, carName, booking_count } = car;
 
     const calculateDay = () => {
 
@@ -60,6 +61,8 @@ const BookNowCard = ({ car }) => {
                     </div>
                 </div>
                 <p className='text-[#11111180]'>A spacious SUV with excellent luggage room and smooth highway manners</p>
+
+                <p className='flex gap-0.5 items-center my-2 text-[#11111180]'><FaBookmark />Booked By {booking_count>0?booking_count:0} users</p>
 
                 {/* DATES */}
                 <div className="space-y-4">

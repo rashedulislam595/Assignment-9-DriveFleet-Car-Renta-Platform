@@ -8,15 +8,31 @@ import { MdAirlineSeatReclineExtra, MdOutlineSettingsInputComponent } from 'reac
 const AllCarsCard = ({car}) => {
     const {_id,carName,DailyRentPrice,carType,seatCapacity,imageUrl,AvailabilityStatus,PickupLocation,description} = car;
 
+    const statusStyle = {
+        Available: "bg-green-100 text-green-700 border border-green-300",
+        Unavailable: "bg-red-100 text-red-700 border border-red-300",
+    };
+    
+    const typeStyle = {
+        Suv: "bg-green-100 text-green-700",
+        Luxury: "bg-purple-100 text-purple-700",
+        Sedan: "bg-blue-100 text-blue-700",
+        Hatchback: "bg-yellow-100 text-yellow-700",
+        Electric: "bg-emerald-100 text-emerald-700",
+        Convertible: "bg-pink-100 text-pink-700",
+    }
+    const style = typeStyle[carType]
+    const availabilityStyle = statusStyle[AvailabilityStatus]
+
     return (
         <Card className="w-full items-stretch shadow-md group overflow-hidden rounded-xl  p-0 hover:shadow-xl">
             <div className="relative w-full shrink-0 overflow-hidden rounded-t-xl ">
                 <Image src={imageUrl} alt={carName} width={200} height={200} className='w-full h-52 rounded-t-xl group-hover:scale-110 duration-700' />
                 <div className='absolute top-3 right-3'>
-                    <button className='text-[#46875f] bg-[#d9f7e3] py-0.5 text-sm px-4 rounded-full font-bold'>{AvailabilityStatus}</button>
+                    <button className={` ${availabilityStyle}text-[#46875f] bg-[#d9f7e3] py-0.5 text-sm px-4 rounded-full font-bold`}>{AvailabilityStatus}</button>
                 </div>
                 <div className='absolute top-3 left-3'>
-                    <button className='text- bg-gray-300 py-0.5 text-sm px-4 rounded-full font-bold'>{carType}</button>
+                    <button className={` ${style}text- bg-gray-300 py-0.5 text-sm px-4 rounded-full font-bold`}>{carType}</button>
                 </div>
             </div>
             <div className="flex flex-1 flex-col gap-3 p-4">

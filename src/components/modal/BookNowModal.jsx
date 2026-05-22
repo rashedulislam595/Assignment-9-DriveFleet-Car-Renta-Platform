@@ -45,8 +45,8 @@ const BookNowModal = ({ car, pickupDate, returnDate, total, yourDay }) => {
 
         const data = await postCarBooking(bookingUserData)
 
-        if (data?.insertedId) {
-            toast.success('Car Data Added Successful!', { position: 'top-center', theme: 'dark' })
+        if (data?.result?.insertedId) {
+            toast.success('Car Booking Successful!', { position: 'top-center', theme: 'dark' })
             redirect('/')
         }
 
