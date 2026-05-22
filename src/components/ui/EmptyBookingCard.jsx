@@ -1,5 +1,6 @@
 import { Button, Card } from '@heroui/react';
 import { CalendarDays, CarFront, SearchX } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
 const EmptyBookingCard = () => {
@@ -59,12 +60,14 @@ const EmptyBookingCard = () => {
           </div>
 
           {/* Button */}
+          <Link href={'/explore-cars'}>
           <Button
             size="lg"
             className="mt-10 bg-cyan-500 text-white font-semibold px-8"
           >
             Explore Cars
           </Button>
+          </Link>
         </div>
       </Card>
     </div>
